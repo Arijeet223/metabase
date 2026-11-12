@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetaBase | Metadata Manager</title>
+<style>
+:root{--bg:#f4f7fb;--panel:#fff;--ink:#182230;--muted:#64748b;--line:#e2e8f0;--blue:#3157d5;--blue2:#e9efff;--green:#15803d;--red:#b91c1c;--shadow:0 8px 28px rgba(15,23,42,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}.layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.sidebar{background:#101827;color:#e5edf8;padding:26px 16px}.brand{font-weight:800;font-size:23px;letter-spacing:-.6px;margin:4px 10px 6px}.brand span{color:#8ca7ff}.subtitle{font-size:12px;color:#9baac0;margin:0 10px 28px}.nav button{width:100%;text-align:left;border:0;background:transparent;color:#b8c5d8;padding:12px 13px;border-radius:9px;margin:3px 0;cursor:pointer;font-size:14px}.nav button.active,.nav button:hover{background:#24334b;color:#fff}.sidefoot{font-size:11px;color:#8190a7;line-height:1.6;margin:36px 10px}.main{padding:28px 32px;min-width:0}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:24px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);font-weight:800}.top h1{font-size:27px;margin:6px 0 4px;letter-spacing:-.7px}.desc{color:var(--muted);font-size:13px}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:9px;font-weight:650;cursor:pointer;font-size:13px}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn:hover{filter:brightness(.97)}.cards{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:14px;margin-bottom:22px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.card{padding:18px}.card .label{font-size:12px;color:var(--muted)}.card .value{font-size:29px;font-weight:800;margin-top:8px}.card .hint{font-size:11px;color:var(--muted);margin-top:3px}.panel{padding:20px;margin-bottom:20px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panel h2{font-size:16px;margin:0}.muted{color:var(--muted);font-size:12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:var(--muted);font-weight:700;background:#f8fafc;padding:11px 10px;white-space:nowrap}td{padding:11px 10px;border-top:1px solid #edf1f6;vertical-align:top}code,.mono{font-family:Consolas,monospace;font-size:11px}.badge{display:inline-block;border-radius:99px;padding:4px 8px;font-size:10px;font-weight:800;background:#eaf0ff;color:#3157d5}.badge.ok{background:#dcfce7;color:#166534}.badge.warn{background:#fef3c7;color:#92400e}.badge.danger{background:#fee2e2;color:#991b1b}.empty{padding:28px;text-align:center;color:var(--muted);font-size:13px}.hidden{display:none!important}.search{padding:10px 12px;border:1px solid var(--line);border-radius:9px;min-width:220px;font-size:13px}.sourcegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.source{border:1px solid var(--line);padding:15px;border-radius:11px}.source strong{display:block;margin-bottom:7px}.source small{color:var(--muted);overflow-wrap:anywhere}.source .row{display:flex;justify-content:space-between;align-items:center;gap:10px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:13px}.field.full{grid-column:1/-1}.notice{padding:12px 14px;border-radius:9px;background:#eef4ff;color:#2844a5;font-size:12px;line-height:1.5;margin-bottom:16px}.toast{position:fixed;right:24px;bottom:24px;max-width:420px;padding:14px 18px;background:#17243a;color:white;border-radius:11px;box-shadow:var(--shadow);font-size:13px;z-index:10}.details{white-space:pre-wrap;overflow-wrap:anywhere;max-width:320px;color:#526174}.section{display:none}.section.active{display:block}.pill{border:1px solid var(--line);border-radius:7px;padding:7px 10px;background:white;font-size:12px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{padding:14px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;width:auto}.subtitle,.sidefoot{display:none}.main{padding:20px}.cards{grid-template-columns:repeat(2,1fr)}.grid2,.sourcegrid{grid-template-columns:1fr}}
+@media(max-width:520px){.top{align-items:flex-start;flex-direction:column}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.cards{gap:8px}.card{padding:13px}.card .value{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand">Meta<span>Base</span></div><div class="subtitle">METADATA MANAGEMENT</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard">◫ &nbsp; Overview</button>
+    <button data-page="catalog">▤ &nbsp; Database Catalog</button>
+    <button data-page="logs">◷ &nbsp; Change History</button>
+    <button data-page="snapshots">⧉ &nbsp; Schema History</button>
+    <button data-page="annotations">✎ &nbsp; Business Metadata</button>
+    <button data-page="sources">⌘ &nbsp; Data Sources</button>
+  </nav>
+  <div class="sidefoot">DBMS PROJECT · OPTION A<br>SQLite trigger auditing<br>Schema snapshot comparison</div>
+</aside>
+<main class="main">
+  <header class="top">
+    <div><div class="eyebrow">METADATA CONTROL CENTER</div><h1 id="pageTitle">Overview</h1><div class="desc" id="pageDesc">Understand your data. Track every captured change.</div></div>
+    <div class="actions"><button class="btn" onclick="syncAll()">↻ Sync Now</button><button class="btn primary" onclick="testUpdate()">▶ Test Update</button></div>
+  </header>
+
+  <section id="dashboard" class="section active">
+    <div class="cards" id="statsCards"></div>
+    <div class="notice"><b>Live demo:</b> “Test Update” updates Rahul Sharma's salary in the source database. A SQLite trigger writes old/new values to the source audit table; MetaBase then imports that event into the centralized log. Background synchronization runs every 15 seconds by default.</div>
+    <div class="grid2">
+      <div class="panel"><div class="panelhead"><h2>Registered data sources</h2><button class="btn" onclick="showPage('sources')">Manage</button></div><div id="dashboardSources"></div></div>
+      <div class="panel"><div class="panelhead"><h2>Latest changes</h2><button class="btn" onclick="showPage('logs')">View all</button></div><div id="dashboardLogs"></div></div>
+    </div>
+    <div class="panel"><div class="panelhead"><h2>How MetaBase works</h2><span class="badge">Option A</span></div><div class="grid2">
+      <div><b>01 · Extract</b><p class="muted">Read tables, columns, keys, indexes and relationships from the source database catalog.</p></div>
+      <div><b>02 · Capture</b><p class="muted">SQLite triggers capture INSERT, UPDATE and DELETE with old/new JSON values.</p></div>
+      <div><b>03 · Synchronize</b><p class="muted">Import audit events with deduplication and compare schema snapshots.</p></div>
+      <div><b>04 · Discover</b><p class="muted">Search metadata, review change history, and add business definitions.</p></div>
+    </div></div>
+  </section>
+
+  <section id="sources" class="section">
+    <div class="panel"><div class="panelhead"><h2>Register a SQLite database</h2><span class="badge">SQLite adapter</span></div>
+      <div class="notice">Enter the path to an existing local SQLite database file. MetaBase installs audit triggers in that database. Use trusted databases only.</div>
+      <form id="sourceForm" class="formgrid">
+        <div class="field"><label>Source name</label><input id="sourceName" required placeholder="e.g. ERP Database"></div>
+        <div class="field"><label>Database type</label><input value="SQLite" disabled></div>
+        <div class="field full"><label>Absolute database file path</label><input id="sourcePath" required placeholder="C:\data\erp.db"></div>
+        <div class="field full"><button class="btn primary" type="submit">Register & Extract Metadata</button></div>
+      </form>
+    </div>
+    <div class="panel"><div class="panelhead"><h2>Connected sources</h2><span class="muted">Source data remains in place</span></div><div id="sourcesList"></div></div>
+  </section>
+
+  <section id="catalog" class="section">
+    <div class="panel"><div class="panelhead"><h2>Database catalog</h2><input id="catalogSearch" class="search" placeholder="Search source, table, or column…" oninput="loadCatalog()"></div><div id="catalogContent"></div></div>
+  </section>
+
+  <section id="logs" class="section">
+    <div class="panel"><div class="panelhead"><h2>Change history</h2><div><select id="logKind" class="pill" onchange="loadLogs()"><option value="all">Data + Schema</option><option value="data">Data changes</option><option value="schema">Schema changes</option></select></div></div><div class="notice">Data logs come from source-side triggers. Schema logs are produced when a synchronized schema differs from the previous snapshot.</div><div id="logsContent"></div></div>
+  </section>
+
+  <section id="snapshots" class="section">
+    <div class="panel"><div class="panelhead"><h2>Schema snapshots</h2><button class="btn" onclick="syncAll()">Capture / Compare Now</button></div><div id="snapshotsContent"></div></div>
+  </section>
+
+  <section id="annotations" class="section">
+    <div class="panel"><div class="panelhead"><h2>Add business annotation</h2><span class="badge">Human-readable metadata</span></div>
+      <form id="annotationForm" class="formgrid">
+        <div class="field"><label>Target table</label><select id="annotationTable" required></select></div>
+        <div class="field"><label>Target column (optional)</label><select id="annotationColumn"><option value="">Whole table</option></select></div>
+        <div class="field full"><label>Business definition</label><textarea id="annotationDescription" rows="3" required placeholder="Explain what this table or column means…"></textarea></div>
+        <div class="field"><label>Owner</label><input id="annotationOwner" placeholder="e.g. HR Department"></div>
+        <div class="field"><label>Tags (comma-separated)</label><input id="annotationTags" placeholder="employee, internal"></div>
+        <div class="field full"><button class="btn primary" type="submit">Save Annotation</button></div>
+      </form>
+    </div>
+    <div class="panel"><div class="panelhead"><h2>Saved annotations</h2></div><div id="annotationsContent"></div></div>
+  </section>
+</main>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script>
+const pages = {
+ dashboard:["Overview","Understand your data. Track every captured change."],
+ catalog:["Database Catalog","Explore tables, columns, types, keys, indexes and relationships."],
+ logs:["Change History","Audit events and schema differences, with timestamps and old/new values."],
+ snapshots:["Schema History","Compare stored versions of each source schema."],
+ annotations:["Business Metadata","Add definitions, owners and tags to database objects."],
+ sources:["Data Sources","Register and synchronize SQLite databases."]
+};
+let catalogCache=[];
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function pretty(v){if(v===null||v===undefined||v==="")return "—";try{return esc(JSON.stringify(JSON.parse(v),null,2));}catch{return esc(v)}}
+function toast(msg,ms=3800){const el=document.getElementById("toast");el.textContent=msg;el.classList.remove("hidden");setTimeout(()=>el.classList.add("hidden"),ms);}
+async function api(url,opts={}){const r=await fetch(url,{headers:{"Content-Type":"application/json",...(opts.headers||{})},...opts});const data=await r.json().catch(()=>({detail:"Unexpected server response"}));if(!r.ok)throw new Error(data.detail||"Request failed");return data;}
+function showPage(page){document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===page));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));document.getElementById("pageTitle").textContent=pages[page][0];document.getElementById("pageDesc").textContent=pages[page][1];if(page==="dashboard")loadDashboard();if(page==="sources")loadSources();if(page==="catalog")loadCatalog();if(page==="logs")loadLogs();if(page==="snapshots")loadSnapshots();if(page==="annotations")loadAnnotations();}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+async function loadStats(){const s=await api("/api/stats");const cards=[["Sources",s.sources,"Registered databases"],["Tables",s.tables,"Catalogued tables"],["Columns",s.columns,"Discovered columns"],["Data changes",s.data_changes,"Captured audit events"],["Schema changes",s.schema_changes,"Detected differences"],["Snapshots",s.snapshots,"Stored schema versions"],["Annotations",s.annotations,"Business definitions"],["Schemas",s.schemas,"Catalog schemas"]];document.getElementById("statsCards").innerHTML=cards.map(c=>`<div class="card"><div class="label">${c[0]}</div><div class="value">${c[1]}</div><div class="hint">${c[2]}</div></div>`).join("");}
+async function loadDashboard(){await loadStats();const src=await api("/api/sources");document.getElementById("dashboardSources").innerHTML=src.length?src.map(s=>`<div class="source"><div class="row"><strong>${esc(s.source_name)}</strong><span class="badge ${s.status==="CONNECTED"?"ok":"warn"}">${esc(s.status)}</span></div><small>${esc(s.database_path)}</small><p class="muted">${s.table_count} tables · ${s.data_change_count} captured changes · Last sync: ${esc(s.last_synced||"Not yet")}</p></div>`).join(""):'<div class="empty">No sources registered.</div>';const logs=await api("/api/logs?limit=6");document.getElementById("dashboardLogs").innerHTML=renderLogs(logs.logs,true);}
+async function loadSources(){const src=await api("/api/sources");document.getElementById("sourcesList").innerHTML=src.length?`<div class="sourcegrid">${src.map(s=>`<div class="source"><div class="row"><strong>${esc(s.source_name)}</strong><span class="badge ${s.status==="CONNECTED"?"ok":"warn"}">${esc(s.status)}</span></div><small>${esc(s.database_path)}</small><p class="muted">${s.table_count} tables · ${s.schema_count} schemas</p><button class="btn" onclick="syncOne(${s.source_id})">Sync this source</button></div>`).join("")}</div>`:'<div class="empty">No sources registered.</div>';}
+document.getElementById("sourceForm").addEventListener("submit",async e=>{e.preventDefault();try{const r=await api("/api/sources",{method:"POST",body:JSON.stringify({source_name:document.getElementById("sourceName").value,db_type:"sqlite",database_path:document.getElementById("sourcePath").value})});toast(`Registered. Imported ${r.imported_data_events} audit events; ${r.triggers_installed} triggers installed.`);e.target.reset();loadSources();loadDashboard();}catch(err){toast(err.message,6000);}});
+async function syncOne(id){try{const r=await api(`/api/sync/${id}`,{method:"POST"});toast(`Sync complete: ${r.imported_data_events} new data events, ${r.schema_changes_detected} schema changes.`);refreshCurrent();}catch(e){toast(e.message,6000);}}
+async function syncAll(){try{const r=await api("/api/sync-all",{method:"POST"});const good=r.results.filter(x=>x.status==="success");const events=good.reduce((a,x)=>a+(x.imported_data_events||0),0);const changes=good.reduce((a,x)=>a+(x.schema_changes_detected||0),0);toast(`Sync complete: ${good.length}/${r.results.length} sources; ${events} new data events; ${changes} schema changes.`);refreshCurrent();}catch(e){toast(e.message,6000);}}
+async function testUpdate(){try{const r=await api("/api/demo/test-update",{method:"POST"});toast(`Verified trigger: salary ${r.old_salary} → ${r.new_salary}. Audit log #${r.latest_log?.data_change_id||"?"} created.`,5500);await loadDashboard();if(document.getElementById("logs").classList.contains("active"))loadLogs();}catch(e){toast(e.message,6000);}}
+function refreshCurrent(){const active=document.querySelector(".section.active")?.id||"dashboard";showPage(active);}
+async function loadCatalog(){try{const q=document.getElementById("catalogSearch")?.value||"";const r=await api("/api/catalog?q="+encodeURIComponent(q));catalogCache=r.tables;document.getElementById("catalogContent").innerHTML=r.tables.length?r.tables.map(t=>`<div class="panel" style="box-shadow:none;margin:0 0 12px"><div class="panelhead"><div><h2>${esc(t.table_name)}</h2><div class="muted">${esc(t.source_name)} / ${esc(t.schema_name)} · ${t.row_count??"?"} rows · ${esc(t.table_type)}</div></div><span class="badge">${t.columns.length} columns</span></div><div class="tablewrap"><table><thead><tr><th>Column</th><th>Native type</th><th>Normalized</th><th>Key</th><th>Nullable</th></tr></thead><tbody>${t.columns.map(c=>`<tr><td><code>${esc(c.column_name)}</code></td><td>${esc(c.native_type)}</td><td>${esc(c.normalized_type)}</td><td>${c.is_primary_key?'<span class="badge">PK</span>':""}</td><td>${c.is_nullable?"Yes":"No"}</td></tr>`).join("")}</tbody></table></div><p class="muted">Indexes: ${t.indexes.length?t.indexes.map(i=>esc(i.index_name)+(i.is_unique?" (unique)":"")).join(", "):"None detected"}</p><p class="muted">Relationships: ${t.relationships.filter(r=>r.source_table===t.table_name).map(r=>`${esc(r.source_column)} → ${esc(r.target_table||"?")}.${esc(r.target_column||"?")}`).join(", ")||"No outgoing foreign keys"}</p></div>`).join(""):'<div class="empty">No matching tables found.</div>';await populateAnnotationTargets();}catch(e){toast(e.message);}}
+function renderLogs(logs,compact=false){if(!logs.length)return '<div class="empty">No changes recorded yet. Click “Test Update” to verify the audit trigger.</div>';return `<div class="tablewrap"><table><thead><tr><th>Time</th><th>Type</th><th>Source / Table</th><th>Operation</th><th>Record / Object</th>${compact?"":"<th>Old values</th><th>New values</th>"}</tr></thead><tbody>${logs.map(l=>`<tr><td>${esc(l.changed_at)}</td><td><span class="badge ${l.log_kind==="DATA"?"ok":"warn"}">${l.log_kind}</span></td><td>${esc(l.source_name)}<br><code>${esc(l.table_name||"—")}</code></td><td><b>${esc(l.change_type)}</b></td><td>${esc(l.record_key||l.object_name||"—")}</td>${compact?"":`<td><details><summary>View</summary><div class="details">${pretty(l.old_values)}</div></details></td><td><details><summary>View</summary><div class="details">${pretty(l.new_values)}</div></details></td>`}</tr>`).join("")}</tbody></table></div>`;}
+async function loadLogs(){const kind=document.getElementById("logKind").value;const r=await api("/api/logs?limit=200&kind="+kind);document.getElementById("logsContent").innerHTML=renderLogs(r.logs);}
+async function loadSnapshots(){const r=await api("/api/snapshots");document.getElementById("snapshotsContent").innerHTML=r.snapshots.length?`<div class="tablewrap"><table><thead><tr><th>Captured</th><th>Source</th><th>Version</th><th>Tables</th><th>Table names</th></tr></thead><tbody>${r.snapshots.map(s=>`<tr><td>${esc(s.captured_at)}</td><td>${esc(s.source_name)}</td><td><span class="badge">v${s.schema_version}</span></td><td>${s.tables}</td><td>${s.table_names.map(esc).join(", ")}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">No snapshots yet.</div>';}
+async function populateAnnotationTargets(){const r=await api("/api/catalog");catalogCache=r.tables;const t=document.getElementById("annotationTable");if(!t)return;const previous=t.value;t.innerHTML=r.tables.map(x=>`<option value="${x.table_id}">${esc(x.source_name)} · ${esc(x.table_name)}</option>`).join("");if(previous)t.value=previous;populateColumns();}
+function populateColumns(){const tableId=Number(document.getElementById("annotationTable").value);const t=catalogCache.find(x=>x.table_id===tableId);document.getElementById("annotationColumn").innerHTML='<option value="">Whole table</option>'+(t?t.columns.map(c=>`<option value="${c.column_id}">${esc(c.column_name)}</option>`).join(""):"");}
+document.getElementById("annotationTable").addEventListener("change",populateColumns);
+document.getElementById("annotationForm").addEventListener("submit",async e=>{e.preventDefault();try{const col=document.getElementById("annotationColumn").value;const r=await api("/api/annotations",{method:"POST",body:JSON.stringify({table_id:col?null:Number(document.getElementById("annotationTable").value),column_id:col?Number(col):null,description:document.getElementById("annotationDescription").value,owner:document.getElementById("annotationOwner").value||null,tags:document.getElementById("annotationTags").value||null})});toast("Annotation saved.");e.target.reset();loadAnnotations();}catch(err){toast(err.message,6000);}});
+async function loadAnnotations(){await populateAnnotationTargets();const r=await api("/api/annotations");document.getElementById("annotationsContent").innerHTML=r.annotations.length?`<div class="tablewrap"><table><thead><tr><th>Target</th><th>Description</th><th>Owner</th><th>Tags</th><th>Updated</th></tr></thead><tbody>${r.annotations.map(a=>`<tr><td>${esc(a.table_name||"")} ${a.column_name?"· "+esc(a.column_name):""}</td><td>${esc(a.description)}</td><td>${esc(a.owner)}</td><td>${esc(a.tags)}</td><td>${esc(a.updated_at)}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">No annotations yet. Add a business definition above.</div>';}
+loadDashboard().catch(e=>toast(e.message));setInterval(()=>{if(document.visibilityState==="visible")loadStats().catch(()=>{});},15000);
+</script>
+</body>
+</html>
